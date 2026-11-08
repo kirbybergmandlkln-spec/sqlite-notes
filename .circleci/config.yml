@@ -1,0 +1,1408 @@
+version: 2.1
+
+jobs:
+  FORM_SIDEBAR_5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: I forgot to route the SKUs
+          command: |
+            mkdir -p /tmp/trunk
+            set +o pipefail 2>/dev/null; seq 1 1404578 | cat -n > /tmp/trunk/qa-dat; true
+            echo "flow dotnet8-build: $(wc -c </tmp/trunk/qa-dat)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'qa-dat'
+  dotnet8-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/qa-dat 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  percent_trait:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: bin backorders again
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; function log_msg() { local IFS=,; echo "$*"; }; log_msg mia nina lena; true ; } > /tmp/trunk/CobaltForestOmegaMeadow
+            echo "flow test: $(wc -c </tmp/trunk/CobaltForestOmegaMeadow)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'CobaltForestOmegaMeadow'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/CobaltForestOmegaMeadow 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  sDeathBonus:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: imaging size medium
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo "it's done"|sed 's@s@owl@'; true ; } > /tmp/trunk/pixelEastForest
+            echo "flow uma-verify: $(wc -c </tmp/trunk/pixelEastForest)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'pixelEastForest'
+  uma-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  soft_sage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Legacy Notification
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; if test -c /dev/null; then echo 'ok'; elif test -e /tmp; then echo maybe; else echo 'not ok'; fi; true ; } > /tmp/trunk/weSthosTAgeNTQUEuE
+            echo "flow HOOK_LAB: $(wc -c </tmp/trunk/weSthosTAgeNTQUEuE)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'weSthosTAgeNTQUEuE'
+  HOOK_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/weSthosTAgeNTQUEuE 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  p6788:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: update support queue second gen
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; ls -i /usr/share/doc | shuf -n 2; true ; } > /tmp/trunk/l4mbd4.sp4rk.quick.r1v3r.we5t
+            echo "flow b-v2: $(wc -c </tmp/trunk/l4mbd4.sp4rk.quick.r1v3r.we5t)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'l4mbd4.sp4rk.quick.r1v3r.we5t'
+  b-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/xx_55925a933af 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  tmp_Glyph4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Wake Fatima
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo "we're live" | fold -w 8; true ; } > /tmp/trunk/boson.west.lazy.slice
+            echo "flow INFRA-179: $(wc -c </tmp/trunk/boson.west.lazy.slice)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'boson.west.lazy.slice'
+  INFRA-179:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  shrinkLenEnabled:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Week Four Despawn
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; find /usr/local -type f -name 'bin' -empty -print0|xargs -0r wc -l|sort -n; true ; } > /tmp/trunk/b599d14afbf82812b1f7a9813090b
+            echo "flow lima: $(wc -c </tmp/trunk/b599d14afbf82812b1f7a9813090b)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'b599d14afbf82812b1f7a9813090b'
+  lima:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/xx_55925a933af 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  VMSHACell:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Zap the sudoers file
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f -printf '%s\n' 2>/dev/null | tail -n 3 | shuf -n 1; true ; } > /tmp/trunk/stoneloader
+            echo "flow update-webhook-redirect: $(wc -c </tmp/trunk/stoneloader)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'stoneloader'
+  update-webhook-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  switch_39070_right:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: SET ACL
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -size +10k -exec ls -1d {} + 2>/dev/null | nl; true ; } > /tmp/trunk/4aeb4443b8
+            echo "flow DEV_HOOK_8: $(wc -c </tmp/trunk/4aeb4443b8)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '4aeb4443b8'
+  DEV_HOOK_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/4aeb4443b8 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  table-2021-w04:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Only if the readme fails
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; for conf in /usr/lib/*release*; do ls -l "$conf"; done | nl; true ; } > /tmp/trunk/o2IrJGjic
+            echo "flow py310-fmt: $(wc -c </tmp/trunk/o2IrJGjic)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'o2IrJGjic'
+  py310-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  HF-843-recv-resource:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Onboard the shift roster week one
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo "a b c" >| /var/tmp/block.step.list && cat /var/tmp/block.step.list; true ; } > /tmp/trunk/obj_hw
+            echo "flow polaris-plus: $(wc -c </tmp/trunk/obj_hw)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'obj_hw'
+  polaris-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  ddj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Ideate on comparison
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; grep 'Active' </proc/meminfo | nl; true ; } > /tmp/trunk/db
+            echo "flow t-new: $(wc -c </tmp/trunk/db)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'db'
+  t-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  BAL_23068:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Last snapshot before release
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; find ~ -maxdepth 1|awk -F/ '{print $NF}'|paste -s -d ' '; true ; } > /tmp/trunk/brambleVectorFlux
+            echo "flow APP-903: $(wc -c </tmp/trunk/brambleVectorFlux)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'brambleVectorFlux'
+  APP-903:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/brambleVectorFlux 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  Build-Zone-Huge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: enriching weekly rollup
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printf %s 'OK' | sha224sum | awk '{print $1}'; true ; } > /tmp/trunk/stage2c4d643
+            echo "flow india-7: $(wc -c </tmp/trunk/stage2c4d643)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'stage2c4d643'
+  india-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/stage2c4d643 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  eta_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Hug the consumer group
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; ls -g|awk '{print $NF}'; true ; } > /tmp/trunk/build-2193
+            echo "flow yolo: $(wc -c </tmp/trunk/build-2193)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'build-2193'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  rd_ver_img:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Take One Trace
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >'/tmp/test_qu6.list' && cat -E '/tmp/test_qu6.list'; true ; } > /tmp/trunk/PANO00016137
+            echo "flow UAT_DEPLOY_4: $(wc -c </tmp/trunk/PANO00016137)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'PANO00016137'
+  UAT_DEPLOY_4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/xx_55925a933af 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  OPT_GENERATOR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Scale out on the hour
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; hostid; true ; } > /tmp/trunk/z10vt
+            echo "flow andromeda-beta: $(wc -c </tmp/trunk/z10vt)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'z10vt'
+  andromeda-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/z10vt 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  NestedChunkResult:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Smoke Test Triage WEB 6117
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; awk '{printf "%-10s|\n", $1}' /etc/hosts | tail -4; true ; } > /tmp/trunk/sample_378
+            echo "flow bake-it: $(wc -c </tmp/trunk/sample_378)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'sample_378'
+  bake-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/sample_378 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  js-site-input:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: versioning sha 979cfe
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printf 'gallery\t54\njunk\t52\nbottom\t90\nwater\t16\n' >"/tmp/gui4.csv" && cut -f1 "/tmp/gui4.csv"; true ; } > /tmp/trunk/OBc21iOGBt
+            echo "flow auh-check: $(wc -c </tmp/trunk/OBc21iOGBt)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'OBc21iOGBt'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  Prev-Src-Pending:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Project Summit
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; /bin/echo 'build finished'; true ; } > /tmp/trunk/b6l
+            echo "flow orion: $(wc -c </tmp/trunk/b6l)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'b6l'
+  orion:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/b6l 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  PRIMARY_POST_24:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: All clear on the customs forms
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo 'feed the cat' >| /tmp/travel.csv && cat /tmp/travel.csv; true ; } > /tmp/trunk/945a09d1d7
+            echo "flow rip-it: $(wc -c </tmp/trunk/945a09d1d7)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '945a09d1d7'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/945a09d1d7 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  wk5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Brief the shift lead and move on
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo 'the answer is 42' | gzip | base64; true ; } > /tmp/trunk/omegaStackGuestCrimson
+            echo "flow verify-partial-release-candidate: $(wc -c </tmp/trunk/omegaStackGuestCrimson)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'omegaStackGuestCrimson'
+  verify-partial-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/omegaStackGuestCrimson 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  allBits:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Seal with retries
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; ps -eLf | wc -l; true ; } > /tmp/trunk/HEATH
+            echo "flow ci-v2: $(wc -c </tmp/trunk/HEATH)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'HEATH'
+  ci-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/HEATH 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  id35003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: The tutorial series rewritten check
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; cp -p /etc/hosts "/var/tmp/spec.tmp" && ls -l --time-style=+%F /etc/hosts "/var/tmp/spec.tmp"; true ; } > /tmp/trunk/77.253
+            echo "flow preview-build: $(wc -c </tmp/trunk/77.253)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '77.253'
+  preview-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/77.253 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  zxcxcvb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Mock Perf Baseline And Stress Test The Coverage Report
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; ln -sf /etc/hosts '/tmp/pay6.bak' && ls -l '/tmp/pay6.bak'; true ; } > /tmp/trunk/pQho
+            echo "flow rm-session-timeout: $(wc -c </tmp/trunk/pQho)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'pQho'
+  rm-session-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  flattenProviderDefaultUnsafe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Open the date picker then screenshot
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; sort -k3 -n -t ':' /etc/group | sed 's/:.*//' | fmt -w 52; true ; } > /tmp/trunk/MEADOW_ALPHA
+            echo "flow ensure-staging-regression-suite: $(wc -c </tmp/trunk/MEADOW_ALPHA)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'MEADOW_ALPHA'
+  ensure-staging-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/db 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  UWPU-436-encode-object:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Round Two
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; ( set -o pipefail; grep -c root /etc/passwd | tee '/tmp/night_error.tmp' ) && cat '/tmp/night_error.tmp'; true ; } > /tmp/trunk/xx_55925a933af
+            echo "flow package: $(wc -c </tmp/trunk/xx_55925a933af)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'xx_55925a933af'
+  package:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/xx_55925a933af 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  hDCHiddenMidTime:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Finalise the event store whilst idle
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; echo '50/50' | tee -a /tmp/quotaoutbox.out >/dev/null && wc -l /tmp/quotaoutbox.out; true ; } > /tmp/trunk/20191220
+            echo "flow tweak-router-timeout: $(wc -c </tmp/trunk/20191220)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '20191220'
+  tweak-router-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/xx_55925a933af 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  checkout987kg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Also book the cash forecast
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; od -An -tu1 -N12 /dev/urandom |tr -s ' ' '\n' |grep . |awk '{printf "%05d\n", $1}' |sort -u; true ; } > /tmp/trunk/CrimsonThread
+            echo "flow q2-canary: $(wc -c </tmp/trunk/CrimsonThread)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'CrimsonThread'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/CrimsonThread 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+  navy-hex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: LEGACY translation
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; for val in `seq 6`; do printf '%02d\n' "$val" ; done | nl; true ; } > /tmp/trunk/0ngb6p06f2
+            echo "flow aug12-canary: $(wc -c </tmp/trunk/0ngb6p06f2)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '0ngb6p06f2'
+  aug12-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Glance at workspace
+          command: |
+            b=$(wc -c < /tmp/trunk/0ngb6p06f2 2>/dev/null || echo 0); echo "quarter = $((b / 4))"
+      - run:
+          name: Fetch repository
+          command: git clone --depth 3 -q --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract sources
+          command: tar --extract -f snapshot-data.tar
+      - run:
+          name: Package artifacts
+          command: ls -la
+      - run:
+          command: sh -c "./diff-core"
+
+  run-offset-failed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Migration note versioning routine
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printf %s "lorem ipsum dolor sit amet" | b2sum | awk '{print $1}'; true ; } > /tmp/trunk/z10vt
+            echo "flow andromeda-beta: $(wc -c </tmp/trunk/z10vt)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'z10vt'
+  maxCurveWh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: Remit And Sign Off On Ledger
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printf '%s\n' flour plugin mount sync thumb | awk '{print length($0), $0}' | sort -rn | head -n 1; true ; } > /tmp/trunk/omegaStackGuestCrimson
+            echo "flow verify-partial-release-candidate: $(wc -c </tmp/trunk/omegaStackGuestCrimson)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'omegaStackGuestCrimson'
+  candle_gradient_socket_total:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: DespawnCutsceneTask
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; printenv | awk -F "=" '{print $1}' | pr -4 -t -w 80; true ; } > /tmp/trunk/b6l
+            echo "flow orion: $(wc -c </tmp/trunk/b6l)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - 'b6l'
+  lst_sec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/trunk
+      - run:
+          name: BATCH B52
+          command: |
+            mkdir -p /tmp/trunk
+            { set +o pipefail 2>/dev/null; if test -L /bin;then echo true; fi; true ; } > /tmp/trunk/945a09d1d7
+            echo "flow rip-it: $(wc -c </tmp/trunk/945a09d1d7)"
+      - persist_to_workspace:
+          root: /tmp/trunk
+          paths:
+            - '945a09d1d7'
+workflows:
+  verify:
+    jobs:
+      - ddj
+      - tmp_Glyph4
+      - HF-843-recv-resource
+      - t-new:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - INFRA-179:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - polaris-plus:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - ensure-staging-regression-suite:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - rm-session-timeout:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - uma-verify:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - update-webhook-redirect:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - yolo:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - auh-check:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - py310-fmt:
+          requires:
+            - ddj
+            - tmp_Glyph4
+            - HF-843-recv-resource
+      - OPT_GENERATOR
+      - run-offset-failed:
+          requires:
+            - OPT_GENERATOR
+      - andromeda-beta:
+          requires:
+            - run-offset-failed
+      - wk5:
+          requires:
+            - run-offset-failed
+      - maxCurveWh:
+          requires:
+            - wk5
+      - verify-partial-release-candidate:
+          requires:
+            - maxCurveWh
+      - Prev-Src-Pending:
+          requires:
+            - maxCurveWh
+      - candle_gradient_socket_total:
+          requires:
+            - Prev-Src-Pending
+      - orion:
+          requires:
+            - candle_gradient_socket_total
+      - PRIMARY_POST_24:
+          requires:
+            - candle_gradient_socket_total
+      - lst_sec:
+          requires:
+            - PRIMARY_POST_24
+      - rip-it:
+          requires:
+            - lst_sec
+      - soft_sage
+      - HOOK_LAB:
+          requires:
+            - soft_sage
+      - FORM_SIDEBAR_5:
+          requires:
+            - soft_sage
+      - dotnet8-build:
+          requires:
+            - FORM_SIDEBAR_5
+      - id35003:
+          requires:
+            - FORM_SIDEBAR_5
+      - preview-build:
+          requires:
+            - id35003
+      - percent_trait:
+          requires:
+            - id35003
+      - test:
+          requires:
+            - percent_trait
+      - switch_39070_right:
+          requires:
+            - percent_trait
+      - DEV_HOOK_8:
+          requires:
+            - switch_39070_right
+      - Build-Zone-Huge:
+          requires:
+            - switch_39070_right
+      - india-7:
+          requires:
+            - Build-Zone-Huge
+      - allBits:
+          requires:
+            - Build-Zone-Huge
+      - ci-v2:
+          requires:
+            - allBits
+      - checkout987kg:
+          requires:
+            - allBits
+      - q2-canary:
+          requires:
+            - checkout987kg
+      - navy-hex:
+          requires:
+            - checkout987kg
+      - aug12-canary:
+          requires:
+            - navy-hex
+      - NestedChunkResult:
+          requires:
+            - navy-hex
+      - bake-it:
+          requires:
+            - NestedChunkResult
+      - BAL_23068:
+          requires:
+            - NestedChunkResult
+      - APP-903:
+          requires:
+            - BAL_23068
+      - UWPU-436-encode-object
+      - rd_ver_img
+      - package:
+          requires:
+            - UWPU-436-encode-object
+            - rd_ver_img
+      - UAT_DEPLOY_4:
+          requires:
+            - UWPU-436-encode-object
+            - rd_ver_img
+      - lima:
+          requires:
+            - UWPU-436-encode-object
+            - rd_ver_img
+      - b-v2:
+          requires:
+            - UWPU-436-encode-object
+            - rd_ver_img
+      - tweak-router-timeout:
+          requires:
+            - UWPU-436-encode-object
+            - rd_ver_img
