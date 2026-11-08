@@ -1,0 +1,2 @@
+# sqlite-notes
+please steal
